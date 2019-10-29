@@ -1,6 +1,6 @@
 <template>
 <div id="dayList">
-    <div id="dayItem" v-for="day in dayList" :key="day.id">
+    <div id="dayItem" v-for="day in dayList" :key="day.id" @click="goDetail()">
         <div id="dayIcon">
             <v-icon :color="day.iconColor" class="material-icons">{{day.iconName }}</v-icon>
         </div>
@@ -45,6 +45,9 @@ export default {
         goInsert: function() {
             console.log("====== goInsert ======")
             this.$router.push("/dayCalc/insert");
+        },
+        goDetail: function() {
+            console.log("====== goDetail ======")
         }
     },
     mounted() {
@@ -124,8 +127,8 @@ export default {
     right: 15px; 
     bottom: 15px;
     background-color: rgb(231, 68, 68, 0.4);
-    width: 4rem;
-    height: 4rem;
+    width: 3.7rem;
+    height: 3.7rem;
     border-radius: 2rem;
 
     display: flex;
