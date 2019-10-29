@@ -1,16 +1,15 @@
 <template>
 <div id="dayList">
-    <div id="dayItem">
+    <div id="dayItem" v-for="day in dayList" :key="day.id">
         <div id="dayIcon">
-            <v-icon :color="'red'" class="material-icons">favorite</v-icon>
-            <v-icon color="red" class="material-icons">favorite</v-icon>
+            <v-icon :color="day.iconColor" class="material-icons">{{day.iconName }}</v-icon>
         </div>
         <div id="dayLeft">
             <div id="dayName">
-                헬스장
+                {{day.name}}
             </div>
             <div id="dayDate">
-                2019.10.28(월)
+                {{day.date}}
             </div>
         </div>
         <div id="dayRight">
@@ -18,10 +17,7 @@
         </div>
     </div>
 
-  
-    
-
-    <div id="btnPlus">
+    <div id="btnPlus" @click="goInsert()">
         <div>
         +
         </div>
@@ -30,7 +26,7 @@
 </template>
 
 <script>
-// import {mapState, mapActions, mapMutations, mapGetters } from 'vuex'
+import {mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 export default {
     name: 'dayCalcListView',
     components: {
@@ -41,10 +37,15 @@ export default {
         }
     },
     computed: {
-
+        ...mapGetters({
+            dayList: 'day/getDayList',
+        })
     },
     methods: {
-
+        goInsert: function() {
+            console.log("====== goInsert ======")
+            this.$router.push("/dayCalc/insert");
+        }
     },
     mounted() {
 
