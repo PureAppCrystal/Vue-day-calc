@@ -8,15 +8,29 @@ export const user = {
     namespaced: true,
     state: {
         userInfo: "",
+        isMenuList: false,
+        isMenuDetail: false,
     },
     getters: {
         getUserInfo: state => {
             return state.userInfo;
+        },
+        getIsMenuList: state => {
+            return state.isMenuList;
+        },
+        getIsMenuDetail: state => {
+            return state.isMenuDetail;
         }
     },
     mutations: {
         setUserInfo(state, payload) {
             state.userInfo = payload
+        },
+        setIsMenuList (state, payload)  {
+            state.isMenuList = payload;
+        },
+        setIsMenuDetail(state, payload) {
+            state.isMenuDetail = payload;
         }
     },
     actions: {
@@ -38,6 +52,7 @@ export const user = {
                 } else {
                     console.log("user not found")
                     alert("can not found user")
+                    
                     // 실패 
                     // 알럿 경고 
                     return false;

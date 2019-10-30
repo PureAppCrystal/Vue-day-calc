@@ -42,12 +42,16 @@ const routes = [
         ]
     },
     {
+        name: 'goInsert',
         path: '/dayCalc/insert',
         component: DayCalcModifyView,
+        props: true
     },
     {
+        name: 'goUpdate',
         path: '/dayCalc/update',
         component: DayCalcModifyView,
+        props: true
     },
     {
         path: '*',

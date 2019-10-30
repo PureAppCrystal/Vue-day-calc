@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import {mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 export default {
     name: 'dayDetail',
     data()  {
@@ -16,8 +17,15 @@ export default {
 
     },
     methods: {
-
-    }
+        ...mapMutations({
+            setPageType: 'day/setPageType'
+        }),
+    },
+    mounted() {
+        console.log("====== DayCalcDetailView mounted ======")
+        this.setPageType("detail")
+    },
+    
 }
 </script>
 

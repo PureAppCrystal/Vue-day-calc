@@ -4,15 +4,18 @@
         <img alt="Vue logo" src="@/assets/logo.png">
         <div id="title"> Login </div>
         <div id="row">
-            <div id="label"> ID </div>
-            <input type="text" autocomplete="off" v-model="username"/>
+            <!-- <div id="label"> ID </div> -->
+            <!-- <input type="text" autocomplete="off" v-model="username"/> -->
+            <v-text-field label="ID" v-model="username"></v-text-field>
         </div>
         <div id="row">
-            <div id="label"> PW </div>
-            <input type="password" autocomplete="off" v-model="password"/>
+            <!-- <div id="label"> PW </div> -->
+            <!-- <input type="password" autocomplete="off" v-model="password"/> -->
+            <v-text-field label="Password" v-model="password" type="password" autocomplete="off"></v-text-field>
         </div>
-        <div>
-            <button type="submit"> Login </button>
+        <div id="row">
+            <!-- <button type="submit"> Login </button> -->
+            <v-btn type="submit" block="true" color="rgb(65,184,131,1)" :disabled="loginDisable" autocomplete="off">Login</v-btn>
         </div>
     </form>
 </div>
@@ -35,7 +38,12 @@ export default {
     computed: {
         ...mapGetters({
             loginInfo: 'user/getUserInfo'
-        })
+        }),
+        loginDisable() {
+
+            const { username, password } = this;
+            return !(username && password);
+        }
     },
     methods: {
         
@@ -47,7 +55,8 @@ export default {
             const { username, password } = this;
             if ( username && password ) {
                 // 로그인시도 
-                this.login({username, password })
+                const result = this.login({username, password })
+                console.log("result : ", result)
             } else {
                 // 유효성검사 실패
                 console.log("invaild id&pwd")
@@ -77,16 +86,21 @@ export default {
     margin-top: 3rem;
     display: flex;
     justify-content: center;
-    
+    text-align: center;
 }
 form {
-    width: 50%;
+    width: 80%;
+    min-width: 228px;
     padding: 1rem;
 
     border-radius: 1rem;
     border-color:green;
     border-style: solid;
     border-width: 1px;
+}
+
+img {
+    
 }
 
 #title {
@@ -106,10 +120,11 @@ form {
 
 input {
     flex: 1;
+    min-width: 5rem;
 }
 
 button {
-    margin-top: 1.5rem;
+    /* margin-top: 1.5rem; */
     width: 50%;
 }
 </style>

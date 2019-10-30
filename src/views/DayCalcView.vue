@@ -1,5 +1,7 @@
 <template>
 <div id="day-calc">
+    <MenuList :isMenuList="isMenuList"></MenuList>
+    <MenuDetail :isMenuDetail="isMenuDetail"></MenuDetail>
     <div id="div-header">
         <Header></Header>
     </div>
@@ -11,21 +13,29 @@
 </template>
 
 <script>
-// import {mapState, mapActions, mapMutations, mapGetters } from 'vuex'
+import {mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 import Header from '@/components/Header'
+import MenuList from '@/components/MenuList'
+import MenuDetail from '@/components/MenuDetail'
 // import DayList from '@/views/DayCalcListView'
 export default {
     name: 'dayCalcView',
     components: {
         Header,
+        MenuList,
+        MenuDetail,
         // DayList
     },
     data() {
         return {
-            
+            // isMenuList: true,
         }
     },
     computed: {
+        ...mapGetters({
+            isMenuList: 'user/getIsMenuList',
+            isMenuDetail: 'user/getIsMenuDetail',
+        })
 
     },
     methods: {

@@ -17,11 +17,17 @@
         </div>
     </div>
 
-    <div id="btnPlus" @click="goInsert()">
+    <!-- <div id="btnPlus" @click="goInsert()">
         <div>
         +
         </div>
-    </div>
+    </div> -->
+
+    <v-btn id="btnPlus" @click="goInsert()" 
+        absolute dark fab 
+        right color="rgb(231, 68, 68)" >
+        <v-icon>mdi-plus</v-icon>
+    </v-btn>
 </div>
 </template>
 
@@ -42,16 +48,23 @@ export default {
         })
     },
     methods: {
+        ...mapMutations({
+            setPageType: 'day/setPageType'
+        }),
         goInsert: function() {
             console.log("====== goInsert ======")
-            this.$router.push("/dayCalc/insert");
+            // this.$router.push("/dayCalc/insert");
+            this.$router.push({name:'goInsert', params: {pageType: "insert"}})
         },
         goDetail: function() {
             console.log("====== goDetail ======")
+            this.$router.push("/dayCalc/detail")
+            
         }
     },
     mounted() {
-
+        console.log("====== DayCalcListView mounted ======")
+        this.setPageType("list")
     }
 }
 </script>
@@ -126,9 +139,8 @@ export default {
     position: absolute; 
     right: 15px; 
     bottom: 15px;
-    background-color: rgb(231, 68, 68, 0.4);
-    width: 3.7rem;
-    height: 3.7rem;
+    /* background-color: rgb(231, 68, 68, 0.4); */
+    
     border-radius: 2rem;
 
     display: flex;
@@ -137,7 +149,7 @@ export default {
     font-weight: 500;
     font-size: 3.5rem;
 
-    box-shadow: 0px 2px 2px 2px #999;
+    /* box-shadow: 0px 2px 2px 2px #999; */
 }
 
 #btnPlus:hover{
